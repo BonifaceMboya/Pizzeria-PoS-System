@@ -1,0 +1,302 @@
+.container{
+    margin: auto;
+    padding: 10px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.menu-header{
+    text-align: left;
+    width: fit-content;
+}
+.menu-header h1{
+    font-family: verdana, tahoma;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: black;
+}
+.menu-header p{
+    font-family: helvetica;
+    font-style: italic;
+    margin-top: 0;
+    color: #525252;
+}
+.header-buttons{
+    justify-content: end;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-right: 20px;
+}
+.header-buttons button{
+    width: fit-content;
+    height: 40px;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: white;
+    color: #5C056B;
+}
+.menu{
+    justify-content:end;
+    width: fit-content;
+}
+.menu-btn{
+    cursor: pointer;
+    width: 150px;
+    height: 80px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(64, 107, 5);
+    color: white;
+    font-family: lucida sans;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.order-btn{
+    justify-content: end;
+    display: flex;
+    margin-right: 40px;
+}
+.order-btn button{
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #73AC34;
+    color: white;
+    font-family: lucida sans;
+    font-weight: bold;
+    margin-top: 40px;
+    box-shadow: 0.5px 0.5px 3px rgb(64,107,5);
+}
+.body{
+    justify-content: space-between;
+    display: flex;
+}
+.order-receipt{
+    border: 1px solid;
+    padding: 5px;
+    width: 550px;
+    height: fit-content;
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    border-radius: 4px;
+    border-color: #73AC34;
+}
+.order-receipt input{
+    width: 30px;
+    height: 20px;
+    border: inset;
+    border-width: 2px;
+    border-color: rgb(64, 107, 5);
+    text-align: center;
+    color: rgb(64, 107, 5);
+}
+.order-receipt button{
+    margin-left: 10px;
+    height: 30px;
+    color: rgb(206, 0, 0);
+    background-color: rgb(219, 219, 219);
+    border: none;
+    border-radius: 4px;
+    padding: 7px;
+    font-family: tahoma;
+}
+.order-receipt ul{
+    font-family: tahoma;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.order-receipt h4{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    
+}
+.order-receipt h2{
+    text-align: center;
+    margin-bottom: 10px;
+    color: black;
+    font-family: tahoma;
+}
+.complete-order{
+    justify-content: end;
+    display: flex;
+    margin: 10px;
+}
+.complete-order button{
+    background-color: #73AC34;
+    color: white;
+}
+.topping-list{
+    margin-right: 40px;
+    width: 225px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 30px;
+    background-color: rgb(64, 107, 5);
+    padding: 10px;
+    color: white;
+    font-family: tahoma;
+}
+.topping-list option{
+    font-weight: bold;
+    padding: 5px;
+}
+.topping-list::-webkit-scrollbar{
+    background-color: #5C056B;
+    width: 5px;
+}
+.modal-content{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 300px;
+    height: fit-content;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgb(255, 255, 255);
+    box-shadow: 4px 4px 8px black;
+    padding: 5px;
+}
+.modal-content input{
+    padding: 4px;
+    margin: 5px;
+    text-align: center;
+}
+.modal-content button{
+    margin: 5px;
+    padding: 6px;
+    border: none;
+    box-shadow: 3px 3px 4px grey;
+}
+.modal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(164, 97, 4, 0.582);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(225,147,45,0.822);
+    padding: 5px;
+    height: 100px;
+    box-shadow: 5px 5px 10px black;
+}
+.navbar button{
+    background-color: red;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-shadow: 4px 4px 8px black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+table{
+    width: fit-content;
+    background-color: rgba(225,147,45,0.822);
+    padding: 40px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px black;
+
+}
+.add-btn{
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 4px 4px 8px black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+td{
+    padding: 10px;
+}
+.not-auth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.not-auth button{
+    color: whitesmoke;
+    background-color: black;
+    margin: 20px;
+    width: 300px;
+    height: 100px;
+    border: unset;
+    border-radius: 6px;
+    box-shadow: 4px 4px 10px rgb(255, 162, 0);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.5em;
+}
+.profile-container{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 100px;
+}
+.create-account{
+    background-color: black;
+    color: azure;
+    width: 300px;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+}
+.auth-buttons{
+    justify-content: center;
+    display: flex;
+}
+.auth-buttons button{
+    height: 40px;
+    width: 100px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.create-account label{
+    text-align: left;
+}
+.create-account input{
+    height: 35px;
+    border-radius: 5px;
+    margin: 10px;
+    border: none;
+}
