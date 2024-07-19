@@ -194,6 +194,7 @@ export default function App() {
               {pizzas.pizza_size}: <br/> ${pizzas.pizza_price}  
             </button>))}
 <br/>
+      <div className="toppings-div">
         <select multiple className="topping-list">
               {basic.map((basics)=>(<option key={basics.topping_id} onClick={()=> 
                 handleOrders(basics, null, null)} className="toppings-btn">
@@ -207,6 +208,7 @@ export default function App() {
                 {deluxes.topping_name}:${deluxes.topping_price}
               </option>))}
         </select>
+        </div>
 <br/>
       <div className="order-btn">
         <button onClick={()=>{ orderItems();}} >Order</button>
@@ -239,6 +241,11 @@ export default function App() {
             <button className="complete-order-btn">Place Order</button>
           </div>
       </div>
+      </div>
+      <div className="orders-container">
+        <div className="recent-orders">
+        <h3>Recent Orders</h3>
+        </div>
       </div>
      </div> : <div className="not-auth">
         <h3>Oooops!</h3>

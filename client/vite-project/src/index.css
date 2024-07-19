@@ -9,6 +9,7 @@
 .menu-header{
     text-align: left;
     width: fit-content;
+    margin-left: 20px;
 }
 .menu-header h1{
     font-family: verdana, tahoma;
@@ -42,8 +43,12 @@
     background-color: white;
     color: #5C056B;
 }
+.body{
+    justify-content: space-between;
+    display: flex;
+}
 .menu{
-    justify-content:end;
+    justify-items: center;
     width: fit-content;
 }
 .menu-btn{
@@ -56,17 +61,16 @@
     color: white;
     font-family: lucida sans;
     font-weight: bold;
-    margin-right: 20px;
+    margin: 20px;
     margin-bottom: 10px;
 }
 .order-btn{
-    justify-content: end;
+    justify-content: center;
     display: flex;
-    margin-right: 40px;
 }
 .order-btn button{
     cursor: pointer;
-    width: 80px;
+    width: 250px;
     height: 40px;
     border: none;
     border-radius: 4px;
@@ -74,17 +78,15 @@
     color: white;
     font-family: lucida sans;
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 10px;
     box-shadow: 0.5px 0.5px 3px rgb(64,107,5);
 }
-.body{
-    justify-content: space-between;
-    display: flex;
-}
+
 .order-receipt{
     border: 1px solid;
     padding: 5px;
-    width: 550px;
+    max-width: 550px;
+    min-width: 550px;
     height: fit-content;
     justify-content: end;
     display: flex;
@@ -137,8 +139,14 @@
     background-color: #73AC34;
     color: white;
 }
+.toppings-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 20px;
+    margin: 20px;
+}
 .topping-list{
-    margin-right: 40px;
     width: 225px;
     border-radius: 4px;
     border: none;
@@ -155,6 +163,25 @@
 .topping-list::-webkit-scrollbar{
     background-color: #5C056B;
     width: 5px;
+}
+.orders-container{
+    display: flex;
+    justify-content: end;
+}
+.recent-orders{
+    border: 1px solid;
+    padding: 5px;
+    width: 550px;
+    height: fit-content;
+    margin-right: 30px;
+    margin-top: 30px;
+    border-radius: 4px;
+    border-color: #73AC34;
+}
+.recent-orders h3{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .modal-content{
     justify-content: center;
