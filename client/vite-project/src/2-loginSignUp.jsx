@@ -27,6 +27,7 @@ export default function LoginSignUp(){
                 console.log(response.data);
                 if(response.data.accessToken){
                     localStorage.setItem('token', response.data.accessToken);
+                    localStorage.setItem('userId',login.national_id)
                     alert('login successful');
                     navigate('/menu');
                 }
@@ -66,7 +67,7 @@ export default function LoginSignUp(){
             <input placeholder="Eg:John4@#Doe17" onChange={handlePassword} value={account.user_password} required/>
             <div className="auth-buttons">
                 <button onClick={()=>{createAccount();}}>Sign Up</button>
-                <button onClick={()=> setPage(true)}>Login to Your Account</button>
+                <button onClick={()=> setPage(true)}>Go to Login</button>
             </div>
             
             </div>

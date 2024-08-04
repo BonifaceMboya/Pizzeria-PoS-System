@@ -69,6 +69,12 @@ export default function App() {
     .catch(error=>{console.log("error fetching basic toppings", error)})
   }, [])
 
+  const ConfirmedOrders = ()=>{
+    Axios.post( "http://localhost:4001/ordereditems", customerOrder, {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    .then(()=> window.alert('Order Completed'))
+    .catch(error=> console.log('Error Completing Order', error))
+  }
+
   //onclick adds pizza to receipt
   function handleOrders (basics, deluxes, pizzas) {
     let existingBasicTopping = basics ? toppingOrder.find(item=> item.toppingId === basics.topping_id) : null
@@ -114,16 +120,46 @@ export default function App() {
       setPCount(0);
   }
   
+      //generating order id
+
+      const [identity, setIdentity] = useState({});
+      let orderYear = new Date().getFullYear()
+      let orderMonth= new Date().getMonth() + 1
+      let orderDate= new Date().getDate()
+      let orderHour= new Date().getHours()
+      let orderMinute= new Date().getMinutes()
+      let orderSecond= new Date().getSeconds()
+    
+      const generateOrderId = ()=>{
+        let generatedOrderId = orderYear.toString() + orderMonth.toString() + orderDate.toString() + orderHour.toString() + orderMinute.toString() + orderSecond.toString();
+        const fullOrderId = parseInt(generatedOrderId)
+        // the tax id
+        const currentTaxId = parseInt(tax.map(latest => latest.tax_id));
+        //active user Id
+        const currentUserId = parseInt(localStorage.getItem('userId'));
+    const essentials = {currentTaxId, fullOrderId, currentUserId}
+    setIdentity({essentials})
+      }
+    // end of id generator code
+
   const toppingCount = toppingOrder.reduce((sum, count)=>{return sum + (count.toppingQ || 0)}, 0);
   const toppingNames = toppingOrder.reduce((sum, names)=>{return sum +' '+ (names.toppingN || '')}, '');
-  const toppingCost = tCount * toppingOrder.reduce((sum, cost)=>{return sum + (cost.toppingC || 0)}, 0)
+  const toppingCost = tCount * toppingOrder.reduce((sum, cost)=>{return sum + (cost.toppingC || 0)}, 0);
+  const toppingIds = toppingOrder.reduce((join, ids)=>{return join + ',' + (ids.toppingId || 0)}, 0).toString();
+
+  console.log('The topping ids' + toppingIds)
+  const splitToppingIds = toppingIds.split(',');
+  const shiftToppingIds = splitToppingIds.shift();
+  const allToppingIds = splitToppingIds.map(Number);
+        console.log('The removed item is' + shiftToppingIds)
+        console.log(allToppingIds)
 
   useEffect(()=>{
-        const allToppingsOrdered = {toppingCount, toppingNames, toppingCost}
+        const allToppingsOrdered = {toppingCount, toppingNames, toppingCost, allToppingIds}
         setToppingList({allToppingsOrdered})
       }, [toppingOrder])
 
-     const fullOrder = Object.assign({}, pizzaOrder, toppingList)
+     const fullOrder = Object.assign({}, pizzaOrder, toppingList, identity)
 
      const orderItems = ()=>{
       const previewOrder = toppingOrder.find(item=> item.toppingId !== undefined);
@@ -138,8 +174,12 @@ export default function App() {
     else if(!previewOrder){
       window.alert('Select an Item')
     }
-  }
+      console.log('This is the Identity Content(Tax Id): '+ identity.essentials.currentTaxId)
+        console.log('This is the Identity Content(user Id): '+ identity.essentials.currentUserId)
+          console.log('This is the Identity Content(Order Id): '+ identity.essentials.fullOrderId)
+            console.log(fullOrder)
 
+  }
 
   const filteredOrders = (orderId)=>{ 
     const editedOrder = customerOrder.filter(order=> order.ordering.orderId !== orderId)
@@ -150,12 +190,12 @@ export default function App() {
   const totalPizzaCost = customerOrder.reduce((sum, total)=>{return sum + total.ordering.orderC}, 0);
   const totalToppingsCost = customerOrder.reduce((sum, total)=>{return sum + total.allToppingsOrdered.toppingCost}, 0)
   const totalCost = totalPizzaCost + totalToppingsCost;
-  console.log('Total cost:' + totalCost)
-  console.log('Total Pizza cost:' + totalPizzaCost)
-  console.log('Total Toppings cost:' + totalToppingsCost)
+        console.log('Total cost:' + totalCost)
+          console.log('Total Pizza cost:' + totalPizzaCost)
+            console.log('Total Toppings cost:' + totalToppingsCost)
       
-      const taxRate = tax.map(latestTax => latestTax.tax_percentage); //mapping to get the percentage from the array
-      const  gst = Math.round((totalCost * (taxRate/100))*10)/10;
+  const taxRate = tax.map(latestTax => latestTax.tax_percentage); //mapping to get the percentage from  the array
+    const  gst = Math.round((totalCost * (taxRate/100))*10)/10;
       const netTotal = (totalCost + gst);
 
   let year = new Date().getFullYear();
@@ -188,23 +228,25 @@ export default function App() {
       <div className="body">
 
       <div className="menu">
+        <div className="pizza-div">
             {pizza.map((pizzas)=>(
             <button key={pizzas.pizza_id} onClick={()=>{
-              handleOrders(null, null,  pizzas); setTopping(pizzas.pizza_id);}} className="menu-btn">
+              handleOrders(null, null,  pizzas); setTopping(pizzas.pizza_id); generateOrderId();}} className="menu-btn">
               {pizzas.pizza_size}: <br/> ${pizzas.pizza_price}  
             </button>))}
+        </div>
 <br/>
       <div className="toppings-div">
         <select multiple className="topping-list">
-              {basic.map((basics)=>(<option key={basics.topping_id} onClick={()=> 
-                handleOrders(basics, null, null)} className="toppings-btn">
+              {basic.map((basics)=>(<option key={basics.topping_id} onClick={()=>{
+                handleOrders(basics, null, null); generateOrderId();}} className="toppings-btn">
                 {basics.topping_name}:${basics.topping_price}
               </option>))}
         </select>
         
         <select multiple className="topping-list">
-              {deluxe.map((deluxes)=>(<option key={deluxes.topping_id} onClick={()=> 
-                handleOrders(null, deluxes, null)} className="toppings-btn">
+              {deluxe.map((deluxes)=>(<option key={deluxes.topping_id} onClick={()=> {
+                handleOrders(null, deluxes, null); generateOrderId();}} className="toppings-btn">
                 {deluxes.topping_name}:${deluxes.topping_price}
               </option>))}
         </select>
@@ -238,7 +280,7 @@ export default function App() {
           {totalCost > 0 ? <h4>Net Total: &nbsp; ${netTotal}</h4> : null}
           <h5>Pizza Palace &copy;{year}</h5>
           <div className="complete-order">
-            <button className="complete-order-btn">Place Order</button>
+            <button className="complete-order-btn" onClick={()=>{ConfirmedOrders(); setCustomerOrder([]); }}>Place Order</button>
           </div>
       </div>
       </div>
