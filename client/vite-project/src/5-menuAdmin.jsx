@@ -103,8 +103,8 @@ export default function MenuAdmin(){
                             <td>{item.topping_price}</td>
                             <td>{item.topping_availability}</td>
                             <td>{item.toppingtype_id}</td>
-                            <td><button onClick={()=>{showModal(); setUpdateMenu(item); setSubmit(true);}}>Edit</button></td>
-                            <td><button onClick={e=>deleteItem(item.topping_id, e)}>Delete</button></td>
+                            <td><button onClick={()=>{showModal(); setUpdateMenu(item); setSubmit(true);}} className="edit-btn">Edit</button></td>
+                            <td><button onClick={e=>deleteItem(item.topping_id, e)} className="delete-btn">Delete</button></td>
                             </tr>))}
                             </tbody></table>
         </div>

@@ -89,7 +89,7 @@ export default function DeptAdmin(){
     {departments.map((department)=>(
                     <tr key={department.department_id}>
                         <td>{department.department_id}</td><td>{department.department_name}</td>
-                        <td><button onClick={()=>{showModal(); setUpdateDept(department); setSubmit(true);}}>Edit</button></td><td><button onClick={e=>deleteDepartment(department.department_id, e)}>Delete</button></td>
+                        <td><button onClick={()=>{showModal(); setUpdateDept(department); setSubmit(true);}} className="edit-btn">Edit</button></td><td><button onClick={e=>deleteDepartment(department.department_id, e)} className="delete-btn">Delete</button></td>
                     </tr>))}
                 </tbody>
             </table>

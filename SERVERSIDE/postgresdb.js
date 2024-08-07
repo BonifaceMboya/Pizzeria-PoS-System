@@ -239,12 +239,16 @@ app.post('/section/post', verifyToken, (req, res)=>{
 app.post('/ordereditems', verifyToken, async (req, res)=>{
     try {
         console.log('request body: ', req.body)
-        const allData = req.body[0];
-        const {fullOrderId, currentTaxId, currentUserId} = allData.essentials;
-        const {toppingCost, allToppingIds, toppingCount} = allData.allToppingsOrdered;
-        const {orderId, orderC, orderQ} = allData.ordering
-        const newOrders = await dbpool.query("INSERT INTO orders (order_id, national_id, pizza_id, topping_id, pizza_cost, tax_id, toppings_cost, topping_units, pizza_units) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", [fullOrderId, currentUserId, orderId, allToppingIds, orderC, currentTaxId, toppingCost, toppingCount, orderQ]);
-        res.json(newOrders)
+        const allData = req.body;
+        const eachItem = allData.map( async item => {
+            const {fullOrderId, currentTaxId, currentUserId} =  await item.essentials;
+            const {toppingCost, allToppingIds, toppingCount} = await item.allToppingsOrdered;
+            const {orderId, orderC, orderQ} = await item.ordering
+            const newOrders = await dbpool.query("INSERT INTO orders (order_id, national_id, pizza_id, topping_id, pizza_cost, tax_id, toppings_cost, topping_units, pizza_units) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", [fullOrderId, currentUserId, orderId, allToppingIds, orderC, currentTaxId, toppingCost, toppingCount, orderQ]);
+        })
+        await Promise.all(eachItem)
+        res.status(200).json({Message: 'Order saved Successfully'})
+
     } catch (error) {
         res.status(500).json({error: 'Internal Server Error'})
         console.error(error.message)

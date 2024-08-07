@@ -92,8 +92,8 @@ export default function SectionAdmin(){
     { sections.map((section)=>( 
                     <tr key={section.section_id}>
                         <td>{section.section_id}</td><td>{section.section_name}</td>
-                        <td><button onClick={()=>{showModal(); setUpdateSection(section); setSubmit(true);}}>Edit</button></td>
-                        <td><button onClick={e=>deleteSection(section.section_id, e)}>Delete</button></td>
+                        <td><button onClick={()=>{showModal(); setUpdateSection(section); setSubmit(true);}} className="edit-btn">Edit</button></td>
+                        <td><button onClick={e=>deleteSection(section.section_id, e)} className="delete-btn">Delete</button></td>
                     </tr>))}
                 </tbody>
             </table>

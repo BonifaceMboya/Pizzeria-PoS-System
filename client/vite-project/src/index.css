@@ -233,16 +233,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(225,147,45,0.822);
+    background-color: rgb(236, 236, 236);
     padding: 5px;
     height: 100px;
     box-shadow: 5px 5px 10px black;
 }
 .navbar button{
-    background-color: red;
+    background-color: rgb(64, 107, 5);
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    box-shadow: 4px 4px 8px black;
     font-weight: bold;
     font-size: 1.2rem;
     width: 200px;
@@ -253,24 +252,37 @@
 }
 table{
     width: fit-content;
-    background-color: rgba(225,147,45,0.822);
+    background-color: rgb(236, 236, 236);
     padding: 40px;
     margin: 20px;
     text-align: center;
     align-items: center;
     border-radius: 5px;
-    box-shadow: 4px 4px 8px black;
-
+}
+.edit-btn{
+    border: none;
+    color: white;
+    background-color: rgb(64,107,5);
+    padding: 5px;
+    border-radius: 4px;
+    width:60px;
+}
+.delete-btn{
+    border: none;
+    color: white;
+    background-color: rgb(123, 49, 49);
+    padding: 5px;
+    border-radius: 4px;
+    width: 60px;
 }
 .add-btn{
     margin-left: 20px;
     width: 100px;
     height: 40px;
     color: white;
-    background-color: red;
+    background-color: rgb(92, 5, 107);
     border: none;
     border-radius: 3px;
-    box-shadow: 4px 4px 8px black;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 td{

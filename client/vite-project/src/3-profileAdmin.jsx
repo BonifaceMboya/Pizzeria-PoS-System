@@ -96,8 +96,8 @@ export default function Management (){
                         <td>{profile.email_address}</td>
                         <td>{profile.department_id}</td>
                         <td>{profile.user_password}</td>
-                        <td><button onClick={()=>{showModal(); setUpdateProfile(profile);}}>Edit</button></td>
-                        <td><button onClick={e=>deleteProfile(profile.national_id, e)}>Delete</button></td>
+                        <td><button className="edit-btn" onClick={()=>{showModal(); setUpdateProfile(profile);}}>Edit</button></td>
+                        <td><button className="delete-btn" onClick={e=>deleteProfile(profile.national_id, e)}>Delete</button></td>
                     </tr>))}
                 </tbody>
             </table>
